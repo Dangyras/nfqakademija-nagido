@@ -1,0 +1,21 @@
+{% block list1 %}
+    <ul id="ul1">
+        <li class="countWrapper">
+            <a href="{{ path('index') }}" id="documents">
+                <div>
+                    <img src="{{ asset('images/paper.png') }}" alt="Dokumentas"/>
+                    <span class="sideList">Dokumentai</span>  <span class="count">{{ documentCount }}</span>
+                </div>
+
+            </a>
+        </li>
+        <li class="countWrapper">
+            <a id="reminder">
+                <div>
+                    <img src="{{ asset('images/calendar.png') }}" alt="Kalendorius"/>
+                    <span class="sideList">Priminimai</span>  <span class="count">{{ reminderCount }}</span>
+                </div>
+            </a>
+        </li>
+    </ul>
+{% endblock %}

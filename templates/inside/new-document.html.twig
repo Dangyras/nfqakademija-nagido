@@ -1,0 +1,38 @@
+{% block newDocument %}
+    <div>
+        <button id="addDocumentButton" class="addDocumentButton">
+            Sukurti naują dokumentą..
+        </button>
+    </div>
+
+    <div id="newDocumentWindow" class="newDocumentWindow">
+        <div class="newWindow">
+            {% if form %}
+                {{ form_start(form) }}
+                {{ form_row(form.documentName) }}
+                {{ form_row(form.category) }}
+                <button class="form-date-button">Datos</button>
+                <div style="display: none;" id="dates">
+                    {{ form_row(form.documentDate) }}
+                    {{ form_row(form.documentExpires) }}
+                    {{ form_row(form.documentReminder) }}
+                </div>
+                <button class="form-other-button">Kita</button>
+                <div style="display: none;" id="other">
+                    <label for="tags">Etiketės</label>
+                    <ul style="list-style: none; padding: 0;" class="tags" data-prototype="{{ form_widget(form.tag.vars.prototype)|e('html_attr') }}">
+                        {% for tag in form.tag %}
+                            <li>{{ form_row(tag.tagName) }}</li>
+                        {% endfor %}
+                    </ul>
+                    {{ form_row(form.documentNotes) }}
+                    <div class="file-button">
+                        {{ form_row(form.files) }}
+                    </div>
+
+                </div>
+                {{ form_end(form) }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

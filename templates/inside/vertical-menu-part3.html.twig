@@ -1,0 +1,19 @@
+{% block list3 %}
+    <ul id="ul3">
+        <li>
+            <div class="sideNavigationTitle_left"><b>ETIKETĖS</b></div>
+
+        </li>
+
+        {% for tag in tags %}
+            <li>
+                <a class="tag-list" data-tag="{{ tag.id }}">
+                    <div>
+                        <img src="{{ asset('images/tag.png') }}" alt="Etiketė"/>
+                        <span class="sideList">{{ tag.tagName }}</span>
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

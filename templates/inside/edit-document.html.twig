@@ -1,0 +1,56 @@
+{% block editDocument %}
+    <div id="editDocumentWindow" class="newDocumentWindow">
+        <div class="newWindow">
+            <form action="{{ path('update') }}" method="POST" enctype="multipart/form-data">
+                <div>
+                    <label for="editId" class="required">Dokumento pavadinimas</label>
+                    <input id="editId" type="hidden" name="documentId" value="">
+                    <input id="name" name="documentName" type="text">
+                </div>
+                <div>
+                    <label for="name" class="required">Kategorijos</label>
+                <select name="documentCategory" id="category">
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.categoryName }}</option>
+                    {% endfor %}
+                </select>
+                </div>
+                <button class="form-date-button">Datos</button>
+                <div style="display: none" id="dates">
+                    <div>
+                        <label for="date">Pradžios data</label>
+                        <input type="date" name="documentDate" id="date">
+                    </div>
+                    <div>
+                        <label for="expires">Pabaigos data</label>
+                        <input type="date" name="documentExpires" id="expires">
+                    </div>
+                    <div>
+                        <label for="reminder">Priminimas</label>
+                        <input type="date" name="documentReminder" id="reminder">
+                    </div>
+                </div>
+                <button class="form-other-button">Kita</button>
+                <div style="display: none;" id="other">
+                    <label>Etiketės</label>
+                    <ul style="padding: 10px 0; margin-top: 0; padding-top: 0;" id="tagss">
+                    </ul>
+                    <div class="newTags">
+                        <input placeholder="Pridėti etiketę" id="js-new-tag" type="text">
+                        <span id="js-add-Tag">+</span>
+                    </div>
+                    <div>
+                        <label for="document_documentNotes">Pastabos</label>
+                        <textarea style="width: 100%" name="documentNotes" id="notes" cols="30" rows="3"></textarea>
+                    </div>
+                    <div class="file-button">
+                        <label for="document-files">Failai</label>
+                        <input type="file" id="document-files" name="files[]" accept="application/zip, text/plain, application/pdf, image/*" multiple="multiple" capture="camera">
+                    </div>
+                </div>
+                <button type="submit" id="document_save" style="float: left">Išsaugoti</button>
+                <button type="button" id="edit-document_cancel" name="document[cancel]">Atšaukti</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

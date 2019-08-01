@@ -1,0 +1,128 @@
+{% block table %}
+    <td>
+        <table id="largeTable" class="documentsTable">
+            <thead>
+            <tr>
+                <th>Pavadinimas</th>
+                <th>Kategorija</th>
+                <th>Etiketės</th>
+                <th>Priedai</th>
+                <th>Galioja nuo</th>
+                <th>Galioja iki</th>
+                <th>Priminimas</th>
+                <th>Pastabos</th>
+                <th>Veiksmai</th>
+            </tr>
+            </thead>
+            {% for file in files %}
+                <tr>
+                    <td>{{ file.documentName }}</td>
+                    <td>{{ file.getCategory().getCategoryName() }}</td>
+                    <td>
+                        {% for tag in file.tag %}
+                            {{ tag.tagName }}{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    </td>
+                    {% if file.DocumentPath == NULL %}
+                        <td></td>
+                    {% else %}
+                        <td><a target="_blank" href="{{ file.DocumentPath }}"><img src="{{ asset('images/drive-icon.png') }}" alt="Priedai"></a></td>
+                    {% endif %}
+                    {% if file.DocumentDate == NULL %}
+                        <td></td>
+                        {% else %}
+                            <td>{{ file.DocumentDate | date("Y-m-d") }}</td>
+                    {% endif %}
+                    {% if file.DocumentExpires == NULL %}
+                        <td></td>
+                    {% else %}
+                        <td>{{ file.DocumentExpires|date("Y-m-d") }}</td>
+                    {% endif %}
+                    {% if file.DocumentReminder == NULL %}
+                        <td></td>
+                    {% else %}
+                        <td>{{ file.DocumentReminder|date("Y-m-d") }}</td>
+                    {% endif %}
+                    {% if file.DocumentNotes == NULL %}
+                        <td></td>
+                    {% else %}
+                        <td>{{ file.DocumentNotes }}</td>
+                    {% endif %}
+                    <td>
+                        <span><img class="edit" src="{{ asset('images/edit1.png') }}" alt="Redagavimas" title="Redaguoti" data-id="{{ file.id }}"/></span>
+                        <span><img class="delete" src="{{ asset('images/delete.png') }}" alt="Ištrinimas" title="Ištrinti įrašą" data-id="{{ file.id }}"/></span>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <table id="smallTable" class="documentsTable">
+            <thead>
+                <tr>
+                    <th colspan="2">Pavadinimas</th>
+                    <th>Kategorija</th>
+                    <th>Veiksmai</th>
+                </tr>
+            </thead>
+            {% for file in files %}
+                <tr>
+                    <td>
+                        <div class="clickAndChange" data-row-nr="{{ loop.index }}">
+                            <img src="{{ asset('images/show-more-button.png') }}" class="imgClickAndChange" id="imgClickAndChange{{ loop.index }}" alt="Rodyti daugiau" title="Rodyti daugiau"/>
+                        </div>
+                    </td>
+                    <td>{{ file.documentName }}</td>
+                    <td>{{ file.getCategory().getCategoryName() }}</td>
+                    <td>
+                        <div><img class="edit" src="{{ asset('images/edit1.png') }}" alt="Redagavimas" title="Redaguoti" data-id="{{ file.id }}"/></div>
+                        <div><img class="delete" src="{{ asset('images/delete.png') }}" alt="Ištrinimas" title="Ištrinti įrašą" data-id="{{ file.id }}"/></div>
+                    </td>
+                </tr>
+                <tr class="displayMoreData" id="displayMoreData{{ loop.index }}">
+                    <td></td>
+                    <td colspan="4">
+                        <div class="tabName">Etiketės: </div>
+                        {% if file.tagName is not defined %}
+                            <div class="tabContent"><br></div>
+                        {% else %}
+                            <div class="tabContent">
+                                {% for tag in file.tag %}
+                                    {{ tag.tagName }}{% if not loop.last %},{% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="tabName">Priedai: </div>
+                        {% if file.DocumentPath == NULL %}
+                            <div class="tabContent"><br></div>
+                        {% else %}
+                            <div class="tabContent"><a href="{{ file.DocumentPath }}"><img src="{{ asset('images/drive-icon.png') }}" alt="Priedai"></a><br><br></div>
+                        {% endif %}
+                        <div class="tabName">Galioja nuo: </div>
+                        {% if file.DocumentDate == NULL %}
+                            <div class="tabContent"><br></div>
+                        {% else %}
+                            <div class="tabContent">{{ file.DocumentDate | date("Y-m-d") }}</div>
+                        {% endif %}
+                        <div class="tabName">Galioja iki: </div>
+                        {% if file.DocumentExpires == NULL %}
+                            <div class="tabContent"><br></div>
+                        {% else %}
+                            <div class="tabContent">{{ file.DocumentExpires | date("Y-m-d") }}</div>
+                        {% endif %}
+                        <div class="tabName">Priminimas: </div>
+                        {% if file.DocumentReminder == NULL %}
+                            <div class="tabContent"><br></div>
+                        {% else %}
+                            <div class="tabContent">{{ file.DocumentReminder | date("Y-m-d") }}</div>
+                        {% endif %}
+                        <div class="tabName">Pastabos: </div>
+                        {% if file.DocumentNotes == NULL %}
+                            <div class="tabContent"><br></div>
+                        {% else %}
+                            <div class="tabContent">{{ file.DocumentNotes }} </div>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

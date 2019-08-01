@@ -1,0 +1,179 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #494948;
+    max-width: 980px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+}
+
+h1 {
+    font-size: 1.6em;
+}
+
+h2 {
+    font-size: 1.3em;
+}
+
+header, footer {
+    text-align: center;
+}
+
+footer {
+    background-color: #e5e5e5;
+    padding: 10px;
+    margin-top: 7px;
+}
+
+.logoImage, .logoWord {
+    vertical-align: middle;
+    margin: 15px;
+}
+
+.logoImage {
+    max-width: 20%;
+}
+
+.logoWord {
+    max-width: 40%;
+}
+
+.pageTitle {
+    text-align: center;
+    padding: 30px 15px;
+    width:100%;
+    background-color: #e5e5e5;
+}
+
+.pageSubTitle {
+    text-align: center;
+    padding: 5px;
+    width:100%;
+    background-color: #ffffff;
+}
+
+.pageText {
+    font-size: 1.2em;
+    margin: auto;
+}
+
+.login {
+    background-color: #ffffff;
+    width: 240px;
+    height: 50px;
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    line-height: 1.2;
+    padding: 10px;
+    margin: auto;
+
+    .googleLogoImage {
+        display: inline-block;
+        vertical-align: middle;
+        width: 30px;
+        height: 30px;
+    }
+
+    span {
+        display: inline-block;
+        vertical-align: middle;
+        padding-left: 24px;
+        font-family: inherit;
+        font-size: 0.88em;
+        font-weight: bold;
+        color: #494948;
+    }
+}
+
+.card {
+    margin: 10px;
+    border: 2px solid lightgrey;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px 0 grey;
+}
+
+.card img {
+    width: 15%;
+    margin: 10px;
+    float: left;
+}
+
+.card div {
+    clear: left;
+    margin: 10px;
+    font-size: 1em;
+}
+
+.cardGrid {
+    display: grid;
+}
+
+.loginConfirmation {
+    display: none;
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-color: rgba(0,0,0,.5);
+    text-align: center;
+}
+
+.confirmationWindow {
+    width: 350px;
+    height: 150px;
+    position:absolute;
+    left:0; right:0; top:0; bottom:0;
+    vertical-align: middle;
+    padding: 20px;
+    margin: auto;
+    background-color: #ffffff;
+    box-shadow: 0 2px 3px 0 grey;
+}
+
+@media (min-width: 568px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.4em;
+    }
+    .card div {
+        font-size: 1.1em;
+    }
+    .pageText {
+        width: 70%;
+        font-size: 1.4em;
+    }
+
+    .cardGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+    .pageText {
+        width: 80%;
+    }
+
+    .cardGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+
+}
+

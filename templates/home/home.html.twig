@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/inside.css') }}">
+    <style>
+        .newWindow form input, .newWindow form select {
+            width: 100%;
+        }
+        .newWindow button {
+            padding: 10px 35px;
+            margin: 10px 10px 10px 0;
+            background: #ff7f2a;
+            border: none;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <body>
+        {% block header %}
+            {{ include ('inside/horizontal-menu.html.twig') }}
+        {% endblock %}
+
+        {% block content %}
+            {% block side %}
+                <section>
+                    <div id="sideNavigation" class="sideNavigation">
+
+                        {{ include ('inside/vertical-menu-part0.html.twig') }}
+
+                        {{ include ('inside/vertical-menu-part1.html.twig') }}
+
+                        {{ include ('inside/vertical-menu-part2.html.twig') }}
+
+                        {{ include ('inside/vertical-menu-part3.html.twig') }}
+
+                    </div>
+                </section>
+            {% endblock %}
+
+            {% block section %}
+                <section>
+                    <div id="main">
+                        {{ include ('inside/new-document.html.twig') }}
+                        {{ include ('inside/edit-document.html.twig') }}
+                        {{ include ('inside/table.html.twig') }}
+                    </div>
+                </section>
+            {% endblock %}
+        {% endblock %}
+
+        {% block footer %}{% endblock %}
+
+        {% block javascripts %}
+            <script src="{{ asset('build/js/inside.js') }}"></script>
+        {% endblock %}
+    </body>
+{% endblock %}

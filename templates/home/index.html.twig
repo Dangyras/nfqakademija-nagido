@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/landing.css') }}">
+{% endblock %}
+
+{% block header %}
+    <header>
+        <img class="logoImage" src="{{ asset('images/logo-image.png') }}" alt="Nagido logo"/>
+        <img class="logoWord" src="{{ asset('images/logo-text.png') }}" alt="Nagido"/>
+    </header>
+{% endblock %}
+
+{% block content %}
+
+    {% block section1 %}
+        <div id="test"></div>
+        <div class="pageTitle">
+            <h1>Namų dokumentų gidas</h1>
+
+            <div class="pageText">
+                Elektroninių ir suskaitmenintų popierinių dokumentų saugojimas vienoje vietoje: sutarčių, pažymų, kvitų, instrukcijų, garantijų ir kt. dokumentų.
+            </div>
+
+            <br>
+
+            <div>
+                <a href="{{ path('hwi_oauth_service_redirect', {'service': 'google'}) }}" class="login">
+                    <img class="googleLogoImage" src="{{ asset('images/google-logo.png') }}" alt="Google logo"/>
+                    <span>Prisijungti su Google</span>
+                </a>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block section2 %}
+        <div class="pageSubTitle">
+            <h1>Sprendimai</h1>
+        </div>
+
+        <div class="cardGrid">
+            <div class="card">
+                <img src="{{ asset('images/safety.png') }}" alt="Saugojimas"/>
+                <h2>Saugojimas</h2>
+                <div>Prisijunkite su Google paskyra ir dokumentus saugokite savo Google diske.</div>
+            </div>
+            <div class="card">
+                <img src="{{ asset('images/upload.png') }}" alt="Įkėlimas"/>
+                <h2>Įkėlimas</h2>
+                <div>Kurkite naujus įrašus, įkelkite PDF ar JPG formato dokumentus.</div>
+            </div>
+            <div class="card">
+                <img src="{{ asset('images/calendar.png') }}" alt="Kalendorius"/>
+                <h2>Priminimai</h2>
+                <div>Gaukite pranešimus apie dokumentų galiojimo pabaigą.</div>
+            </div>
+            <div class="card">
+                <img src="{{ asset('images/edit.png') }}" alt="Redagavimas"/>
+                <h2>Redagavimas</h2>
+                <div>Redaguokite dokumentų informaciją: pavadinimą, kategorijas ir etiketes, pastabas, datas.</div>
+            </div>
+            <div class="card">
+                <img src="{{ asset('images/search.png') }}" alt="Paieška"/>
+                <h2>Paieška</h2>
+                <div>Suraskite reikiamus dokumentus pagal kategorijas ir etiketes, taip pat pavadinimą, datas, pastabas.</div>
+            </div>
+            <div class="card">
+                <img src="{{ asset('images/download.png') }}" alt="Atsisiuntimas"/>
+                <h2>Atsisiuntimas</h2>
+                <div>Atsisiųskite dokumentus į telefoną, planšetę ar kompiuterį.</div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

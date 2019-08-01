@@ -1,0 +1,12 @@
+hwi_oauth:
+    firewall_names: [main]
+    fosub:
+        username_iterations: 30
+        properties:
+            google: googleId
+    resource_owners:
+        google:
+            type:                google
+            scope:               "email profile https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/calendar"
+            client_id:           179514135884-d00ukei88suoh58is4pgljarcfu83r42.apps.googleusercontent.com
+            client_secret:       aoh7UNKMaLnVjyN8UN3G0xJq

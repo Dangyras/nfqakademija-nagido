@@ -1,0 +1,64 @@
+fos_user:
+    resource: '@FOSUserBundle/Resources/config/routing/all.xml'
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /connect
+
+google_login:
+    path: /login
+
+logout:
+    path: /logout
+
+index:
+    path: /
+    controller: App\Controller\HomeController::index
+
+reminder:
+  path: /reminder
+  controller: App\Controller\ReminderController::index
+
+documents:
+  path: /documents
+  controller: App\Controller\DocumentController::index
+
+search:
+  path: /search
+  controller: App\Controller\DocumentSearchController::index
+
+category:
+  path: /category
+  controller: App\Controller\CategoryController:index
+
+tag:
+  path: /tag
+  controller: App\Controller\TagController::index
+
+#delete:
+#  path: /delete/{id}
+#  controller: App\Controller\DocumentController::delete
+
+delete:
+  path: /delete
+  controller: App\Controller\DocumentController::test
+
+edit:
+  path: /edit
+  controller: App\Controller\DocumentController:edit
+
+update:
+  path: /update
+  controller: App\Controller\DocumentController:update
+
+test:
+  path: /test
+  controller: App\Controller\DocumentController::test

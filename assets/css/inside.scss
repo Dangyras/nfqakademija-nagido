@@ -1,0 +1,461 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95em;
+    display: block;
+    color: #494948;
+    padding: 0;
+    margin: 0;
+    background-color: #f0f0f0;
+    min-width: 360px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+article,
+header,
+section {
+    display: block;
+}
+
+section {
+    position: relative;
+}
+
+header {
+    position: fixed;
+    z-index: 1;
+    margin: 0;
+    padding: 8px;
+    height: 70px;
+    width: 100%;
+    background-color: #ff7f2a;
+    color: white;
+    vertical-align: middle;
+    top: 0;
+}
+
+.horizontalList div {
+    float: left;
+    padding: 13px;
+}
+
+.horizontalList div:last-child {
+    float: right;
+    padding: 7px;
+}
+
+.menuIcon {
+    width: 25px;
+    height: 25px;
+}
+
+h1 {
+    font-family: 'Open Sans';
+    display: none;
+    font-size: 2.2em;
+    text-align: center;
+}
+
+.searchImage {
+    width: 30px;
+    height: 30px;
+}
+
+.menuButton,
+.searchButton {
+    background: inherit;
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin: -10px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.searchButton {
+    margin-left: -20px;
+}
+
+.searchForm {
+    background: #ffffff;
+    width: 520px;
+    height: 40px;
+    margin: -6px 0 0 40px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    display: none;
+
+    .close {
+        display: none;
+        z-index: 1;
+        cursor: pointer;
+        margin-top: 5px;
+        margin-right: 15px;
+        color: #494948;
+        float: right;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+}
+
+.searchForm input[type=text],
+.searchForm input[type=text]:hover {
+    width: 450px;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    margin: 10px;
+    font-size: 0.95em;
+    color: #494948;
+    font-family: inherit;
+}
+
+.signOutButton {
+    height: 40px;
+    width: 80px;
+    background-color: #ffffff;
+    border: 1px solid grey;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    color: #494948;
+    font-size: 0.9em;
+    display: block;
+    line-height: 1.2;
+    padding: 10px;
+}
+
+.sideNavigation {
+    visibility: hidden;
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    background-color: #ffffff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
+    top: 0; left: 0;
+    border-right: 1px solid #d0d0d0;
+    box-shadow: 0 2px 3px 0 grey;
+}
+
+.sideNavigation ul {
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0;
+    white-space: nowrap;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.sideNavigation ul:last-child {
+    border-bottom: none;
+}
+
+.sideNavigation ul li {
+    padding: 8px 0 8px 10px;
+    font-size: 1em;
+}
+
+.sideNavigation li:hover,
+.sideNavigationTitle_right:hover {
+    background-color: #C8C8C8;
+}
+
+.sideNavigation img, td img {
+    width: 25px;
+    float: left;
+    margin: 3px;
+}
+
+.sideNavigationTitle_left,
+.sideNavigationTitle_right {
+    display: inline-block;
+    width: 50%;
+    padding: 3px;
+}
+
+.sideNavigationTitle_right {
+    text-align: center;
+}
+
+#ul0 {
+    li {
+        padding: 8px;
+        background-color: inherit;
+    }
+    div {
+        height: 44px;
+        text-align: center;
+        img {
+            width: 200px;
+            height: 38px;
+            float: none;
+        }
+    }
+}
+
+#ul2 li:hover:first-child,
+#ul3 li:hover:first-child {
+    background-color: inherit;
+}
+
+.sideList {
+    padding-left: 15px;
+    display: inline-block;
+    padding-top: 3px;
+    text-align: left;
+    text-overflow: ellipsis;
+    line-height: 30px;
+}
+
+a {
+    text-decoration: none;
+    width: 100%;
+    color: #494948;
+}
+
+.addDocumentButton {
+    background-color: #ffffff;
+    border: 1px solid grey;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 40px;
+    width: 200px;
+    outline: none;
+    text-align: center;
+    font-family: inherit;
+    font-size: 0.91em;
+    color: #494948;
+    margin: 0 0 10px 0;
+}
+
+.addDocumentButton span {
+    padding: 10px;
+}
+
+.newDocumentWindow {
+    font-family: inherit;
+    display: none;
+    position: fixed;
+    z-index: 40;
+    top: 0; right: 0; bottom: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+}
+
+.newWindow {
+    overflow: auto;
+    max-width: 400px;
+    max-height: 600px;
+    position: fixed;
+    z-index: 45;
+    left:0; right:0; top:0; bottom:0;
+    vertical-align: middle;
+    padding: 15px;
+    margin: auto;
+    background-color: #ffffff;
+    box-shadow: 0 2px 3px 0 grey;
+}
+
+#options {
+    display: block;
+}
+
+.newWindow form input,
+.newWindow form select {
+    padding: 7px 15px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.85em;
+}
+
+label {
+    font-size: 1em;
+    font-weight: bold;
+    display: block;
+    margin: 10px 0;
+}
+
+.saveButton,
+.cancelButton {
+    height: 30px;
+    width: 80px;
+    margin: 20px 0 0 0;
+    background-color: #ffffff;
+    border: 1px solid grey;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+}
+
+table {
+    font-size: 0.95em;
+    border-collapse: collapse;
+    border: 1px solid #9d938c;
+    padding: 20px;
+    width: 100%;
+}
+
+th {
+    padding: 10px;
+    border: 1px solid #9d938c;
+    background-color: lightgrey;
+    text-align: center;
+    white-space: nowrap;
+}
+
+tr, td {
+    padding: 5px;
+    border: 1px solid #9d938c;
+    background-color: #ffffff;
+}
+
+.notes {
+    max-height: 90px;
+    overflow-y: auto;
+    scroll-padding-top: 0;
+}
+
+.tabName {
+    display: block;
+    float: left;
+    border: 1px solid #9d938c;
+    background-color: lightgrey;
+    text-align: left;
+    width: 50%;
+    font-weight: bold;
+    line-height: 1;
+    padding: 1.3px;
+    margin: 0 5px -2px 0;
+}
+
+.tabContent {
+    display: block;
+    text-align: left;
+    padding: 2px;
+    border-bottom: 1px solid #F0F0F0;
+    font-size: 0.9em;
+    font-family: inherit;
+}
+
+#largeTable {
+    display: none;
+    td:nth-child(2) {
+        white-space: nowrap;
+    }
+}
+
+#smallTable {
+    display: table;
+}
+
+.displayMoreData {
+    display: none;
+}
+
+#main {
+    position: relative;
+    //z-index: 0;
+    padding: 15px 15px 0 15px;
+    margin: 70px 0 0 0;
+    height:calc(100% - 70px);
+    width:100%;
+    background-color: #f0f0f0;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
+.displayCenter {
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+    text-align: center;
+    font-size: 15pt;
+    color: #B8B8B8;
+}
+
+.clickAndChange {
+    cursor: pointer;
+}
+
+.edit, .delete {
+    cursor: pointer;
+    margin: 0 0 0 8px;
+}
+
+.displayCenter img {
+    width: 150px;
+}
+
+@media (min-width: 600px) {
+    h1 {
+        display: inline-block;
+        margin: -6px 0 0 0;
+    }
+}
+
+@media (min-width: 900px) {
+    #largeTable {
+      display: table;
+    }
+
+    #smallTable {
+      display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    .searchButton {
+        display: none;
+    }
+
+    .searchImage {
+        display: none;
+    }
+
+    .searchForm {
+        display: inline-block;
+        margin-left: -4px;
+    }
+}
+
+@media (min-width: 1100px) {
+    #ul0 {
+      display: none;
+    }
+
+    .sideNavigation {
+      visibility: visible;
+      height:calc(100% - 70px);
+      margin: 70px 0 0 0;
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    #main {
+      margin: 70px 0 0 250px;
+      top: 0;
+      left: 0;
+    }
+}
+
+#sideNavigation a {
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}

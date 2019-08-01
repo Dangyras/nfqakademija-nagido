@@ -1,0 +1,18 @@
+{% block list2 %}
+    <ul id="ul2">
+        <li>
+            <div class="sideNavigationTitle_left"><b>KATEGORIJOS</b></div>
+        </li>
+
+        {% for category in categories %}
+            <li>
+                <a class="category-list" data-category="{{ category.id }}">
+                    <div>
+                        <img src="{{ asset('images/folder.png') }}" alt="Aplankas"/>
+                        <span class="sideList">{{ category.categoryName }}</span>
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

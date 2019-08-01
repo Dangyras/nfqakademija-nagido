@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <title>{{ "NAGIDO" }}</title>
+        {% block stylesheets %}
+            <link href="https://fonts.googleapis.com/css?family=Roboto&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('apple-touch-icon.png') }}">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        {% block canonical_meta %}{% endblock %}
+    {% endblock %}
+</head>
+<body>
+    <div class="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+    {% block body %}
+        <div>{% block header %}{% endblock %}</div>
+
+        <div>{% block content %}{% endblock %}</div>
+
+        <div>
+            {% block footer %}
+                <footer>&copy; 2018 by D&G</footer>
+            {% endblock %}
+        </div>
+
+        {% block javascripts %}
+            <script src="{{ asset('build/js/inside.js') }}"></script>
+
+
+        {% endblock %}
+    {% endblock %}
+    <style>
+        .tagBadge {
+            display: inline-block;
+            padding: 0px 5px;
+            padding-right: 20px;
+            background: #ff7f2a;
+            //border-radius: 7px;
+            color: white;
+            margin: 3px 3px;
+        }
+
+        .tagBadge input {
+            width: unset !important;
+            margin: 8px;
+        }
+
+        .loader-wrapper {
+            visibility: hidden;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            background: rgb(0, 0, 0); /* Fall-back for browsers that don't
+                                    support rgba */
+            background: rgba(0, 0, 0, .5);
+        }
+
+        #document_files::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+        #document_files::before {
+            content: 'Select some files';
+            display: inline-block;
+            background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+            border: 1px solid #999;
+            border-radius: 3px;
+            padding: 5px 8px;
+            outline: none;
+            white-space: nowrap;
+            -webkit-user-select: none;
+            cursor: pointer;
+            text-shadow: 1px 1px #fff;
+            font-weight: 700;
+            font-size: 10pt;
+        }
+        #document_files:hover::before {
+            border-color: black;
+        }
+
+        #document_category, #category {
+            background: none;
+            border: solid 1px #ff7f2a;
+            height: 37px;
+        }
+
+        .newDocumentWindow .form-date-button, .newDocumentWindow .form-other-button {
+            width: 100%;
+            margin: 18px 0 0 0;
+            border: solid 1px #ff7f2a;
+            background: none;
+            color: black;
+        }
+
+        .newDocumentWindow .form-date-button:hover, .newDocumentWindow .form-other-button:hover {
+            border: solid 1px #ff7f2a;
+            background: #ff7f2a;
+            color: black;
+        }
+
+        .sp {
+            width: 27px;
+            margin: 3px;
+            height: 27px;
+            display: block;
+            top: 0;
+            right: 0;
+            position: absolute;
+            background: red;
+            line-height: 27px;
+            border-radius: 33px;
+            text-align: center;
+            color: white;
+        }
+
+        .newTags {
+            display: flex;
+            align-items: center;
+        }
+
+        .newTags span {
+            width: 34px;
+            height: 34px;
+            text-align: center;
+            line-height: 34px;
+            font-size: 30px;
+            color: #ff7f2a;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .file-button input {
+            width: 0.1px !important;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .file-button label {
+            width: 100%;
+            margin: 18px 0 0 0;
+            border: solid 1px #ff7f2a;
+            background: none;
+            color: black;
+            display: block;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            font: 400 13.3333px Arial;
+        }
+
+        #loader {
+            z-index: 999999;
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #ff7f2a; /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        .tags li {
+            display: flex;
+            margin-bottom: 2px;
+        }
+
+        .tags li > div {
+            width: 100%;
+        }
+
+        .tags li a {
+            width: 34px;
+            height: 34px;
+            text-align: center;
+            line-height: 34px;
+            font-size: 30px;
+            color: #ff7f2a;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .add_tag_link {
+            padding: 10px 35px;
+            margin: 10px 10px 10px 0;
+            background: #ff7f2a;
+            border: none;
+            cursor: pointer;
+            display: block;
+            text-align: center;
+            color: white;
+            font: 400 13.3333px Arial;
+        }
+
+        .countWrapper {
+            position: relative;
+        }
+        
+        .count {
+            position: absolute;
+            right: 0;
+            width: 74px;
+            height: 33px;
+            line-height: 37px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #reminder .count {
+            color: #ff7f2a;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script async defer>
+        var $collectionHolder;
+        var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
+        var $newLinkLi = $('<span></span>').append($addTagLink);
+        jQuery(document).ready(function() {
+            $collectionHolder = $('ul.tags');
+            $collectionHolder.append($newLinkLi);
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $collectionHolder.find('li').each(function() {
+                addTagFormDeleteLink($(this));
+            });
+
+            $addTagLink.on('click', function(e) {
+                e.preventDefault();
+                addTagForm($collectionHolder, $newLinkLi);
+            });
+        });
+        function addTagForm($collectionHolder, $newLinkLi) {
+            var prototype = $collectionHolder.data('prototype');
+            var index = $collectionHolder.data('index');
+
+            var newForm = prototype;
+
+            newForm = newForm.replace(/__name__/g, index);
+
+            $collectionHolder.data('index', index + 1);
+
+
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+
+            addTagFormDeleteLink($newFormLi);
+        }
+
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<a href="#">-</a>');
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                $tagFormLi.remove();
+            });
+
+        }
+
+        var formatTime = function(unixTimestamp) {
+            var myDate = new Date(unixTimestamp * 1000);
+            var m = myDate.getMonth() + 1;
+            var d = myDate.getDate();
+            m = m > 9 ? m : "0"+m;
+            d = d > 9 ? d : "0"+d;
+            return (myDate.getFullYear() +'-'+ m) +'-'+ d;
+        }
+
+        var formatTags = function(tags) {
+            return tags.map(function(elem){
+                return elem.tagName;
+            }).join(", ");
+        }
+
+        function addData(objResponse) {
+            var response = $.parseJSON(objResponse.data);
+            $("#largeTable tbody").html("");
+            $("#smallTable tbody").html("");
+            response.forEach(function(element) {
+                var documentDate = element.documentDate;
+                documentDate = element.documentDate === null ? "" : formatTime(documentDate.timestamp);
+                var documentReminder = element.documentReminder;
+                documentReminder = element.documentReminder === null ? "" : formatTime(documentReminder.timestamp);
+                var documentExpires = element.documentExpires;
+                documentExpires = element.documentExpires === null ? "" : formatTime(documentExpires.timestamp);
+                //var documentPath = element.documentPath;
+                var documentPath =  element.documentPath === null ? ""
+                    : '<a href="'+element.documentPath+'"><img src="{{ asset("images/drive-icon.png") }}" alt=""></a>';
+                var tags = formatTags(element.tag);
+                var documentNotes = element.documentNotes === null ? "" : element.documentNotes;
+
+                $('<tr>').append(
+                    $('<td>').text(element.documentName),
+                    $('<td>').text(element.category.categoryName),
+                    $('<td>').text(tags),
+                    $('<td>').html(documentPath),
+                    $('<td>').text(documentDate),
+                    $('<td>').text(documentExpires),
+                    $('<td>').text(documentReminder),
+                    $('<td>').text(element.documentNotes),
+                    $('<td>').html(
+                        '<span><img class="edit" src="{{ asset('images/edit1.png') }}" alt="Redagavimas" title="Redaguoti" data-id="'+ element.id +'"/></span>' +
+                        '<span><img class="delete" src="{{ asset('images/delete.png') }}" alt="Ištrinimas" title="Ištrinti įrašą" data-id="'+ element.id +'"/></span>'
+                    )
+                ).appendTo('#largeTable tbody');
+
+
+
+                $('<tr>').append(
+                    $('<td>').html(
+                        `
+                        <div class="clickAndChange">
+                    <img src="{{ asset('images/show-more-button.png') }}" class="imgClickAndChange" alt="Rodyti daugiau" title="Rodyti daugiau"/>
+                    </div>
+                        `
+                    ),
+                    $('<td>').text(element.documentName),
+                    $('<td>').text(element.category.categoryName),
+                    $('<td>').html(
+                        '<span><img class="edit" src="{{ asset('images/edit1.png') }}" alt="Redagavimas" title="Redaguoti" data-id="'+ element.id +'"/></span>' +
+                        '<span><img class="delete" src="{{ asset('images/delete.png') }}" alt="Ištrinimas" title="Ištrinti įrašą" data-id="'+ element.id +'"/></span>'
+                    )
+                ).appendTo('#smallTable tbody');
+
+                $('<tr class="displayMoreData">').append(
+                    $('<td>'),
+                    $('<td colspan="4">').html(
+                        `
+                        <div class="tabName">Etiketės: </div>
+
+
+
+                            <div class="tabContent">
+                                ${ tags }&nbsp;
+                            </div>
+
+
+                        <div class="tabName">Priedai: </div>
+
+                        <div class="tabContent">${ documentPath }&nbsp;</div>
+
+                        <div class="tabName">Galioja nuo: </div>
+                            <div class="tabContent">${ documentDate }&nbsp;</div>
+
+                        <div class="tabName">Galioja iki: </div>
+
+                            <div class="tabContent">${ documentExpires }&nbsp;</div>
+
+                        <div class="tabName">Priminimas: </div>
+
+                            <div class="tabContent">${ documentReminder }&nbsp;</div>
+
+
+                        <div class="tabName">Pastabos: </div>
+
+                            <div class="tabContent">${ documentNotes }&nbsp;</div>
+
+                        `
+                    )
+                ).appendTo('#smallTable tbody');
+
+
+            });
+
+
+
+        }
+
+        $( document ).ready(function() {
+            //Ajax call -- search
+            $(document).on('keyup', '#searchInput', function (e) {
+                $this = $(this);
+
+                var $close = $('.close');
+
+                $close.css('display', 'inline-block');
+
+                if($this.val().length > 0 || $this.val().length == 0) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ path('search') }}',
+                        dataType: 'JSON',
+                        data: {
+                            id: $(this).val()
+                        },
+                        success: function(objResponse) {
+                            addData(objResponse);
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '.close', function(e){
+                location.reload(true);
+            });
+
+            //Ajax call \\ Categories
+            $(document).on('click', '.category-list', function (e) {
+                $('.loader-wrapper').css('visibility', 'hidden');
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ path('category') }}',
+                    dataType: 'JSON',
+                    data: {
+                        category: $(e.currentTarget).data("category")
+                    },
+                    success: function(objResponse) {
+
+                        addData(objResponse);
+                    }
+                });
+            });
+
+            //Ajax call \\ Reminders
+            $(document).on('click', '#reminder', function (e) {
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ path('reminder') }}',
+                    dataType: 'JSON',
+                    data: {
+                    },
+                    success: function(objResponse) {
+                        addData(objResponse);
+                    }
+                });
+            });
+
+            //Ajax call \\ Tags
+            $(document).on('click', '.tag-list', function (e) {
+                $('.loader-wrapper').css('visibility', 'visible');
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ path('tag') }}',
+                    dataType: 'JSON',
+                    data: {
+                        category: $(e.currentTarget).data("tag")
+                    },
+                    success: function(objResponse) {
+                        $('.loader-wrapper').css('visibility', 'hidden');
+                        addData(objResponse);
+                    }
+                });
+
+            });
+
+
+
+            $(document).on('click', '.delete', function (e) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ path('delete') }}',
+                    data: {
+                        id: $(e.currentTarget).data("id")
+                    },
+                    success: function() {
+                        location.reload();
+                    }
+                });
+            });
+
+            //Ajax call -- Edit
+            $(document).on('click', '.edit', function (e) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ path('edit') }}',
+                    dataType: 'JSON',
+                    data: {
+                        id: $(e.currentTarget).data("id")
+                    },
+                    success: function(objResponse) {
+                        var response = $.parseJSON(objResponse.data);
+                        $('#editDocumentWindow #name').val(response.documentName);
+                        $('#editDocumentWindow #category').val(response.category.id);
+                        console.log(response.documentName);
+
+
+                        var documentDate = response.documentDate;
+                        documentDate = response.documentDate === null ? "" : formatTime(documentDate.timestamp);
+                        $('#editDocumentWindow #date').val(documentDate);
+
+                        var documentExpires = response.documentExpires;
+                        documentExpires = response.documentExpires === null ? "" : formatTime(documentExpires.timestamp);
+                        $('#editDocumentWindow #expires').val(documentExpires);
+
+                        var documentReminder = response.documentReminder;
+                        documentReminder = response.documentReminder === null ? "" : formatTime(documentReminder.timestamp);
+                        $('#editDocumentWindow #reminder').val(documentReminder);
+
+
+                        $('#editDocumentWindow #notes').val(response.documentNotes);
+
+                        $('#editDocumentWindow #editId').val($(e.currentTarget).data("id"));
+
+
+
+
+                        response.tag.forEach((tag) => {
+                            $("#tagss").append(
+                            //$('<label class="tagBadge">').html("<input checked type=\"checkbox\" name=\"checkbox[]\" value=\""+ tag.id +"\">"+ tag.tagName+"")
+                            $('<label class="tagBadge">').html("<input disabled class=\"realCheckbox\" type=\"hidden\" name=\"checkbox[]\" value=\""+tag.id+"\"><input checked class=\"dummyCheckbox\" type=\"checkbox\" >"+ tag.tagName+"")
+                            );
+                        });
+                        document.getElementById('editDocumentWindow').style.display = 'block';
+                    }
+                });
+            });
+
+            $(document).on('click', '#edit-document_cancel', function (e) {
+                $("#tags").html("");
+                $("#tagss").html("");
+                document.getElementById('editDocumentWindow').style.display = 'none';
+                $(".form-date-button").next().css("display", "none");
+                $(".form-other-button").next().css("display", "none");
+
+            });
+
+            $(".form-date-button").on("click", (e) => {
+                e.preventDefault();
+                var slideData = $(".form-date-button").next();
+                slideData.slideToggle( "slow", function() {
+                });
+            });
+
+            $(".form-other-button").on("click", (e) => {
+                e.preventDefault();
+            var slideData = $(".form-other-button").next();
+            slideData.slideToggle( "slow", function() {
+            });
+        });
+
+            $("#js-add-Tag").on("click", (e) => {
+                e.preventDefault();
+                var name = $( "#js-new-tag" ).val();
+                if (name.length >= 3) {
+                    $("#tagss").append(
+                        $('<label class="tagBadge">').html("<input checked type=\"checkbox\" name=\"checkbox[]\" value=\""+ name +"\">"+ name +"")
+                    );
+                    $("#js-new-tag").attr("placeholder", "Pridėti etiketę");
+                } else {
+                    $("#js-new-tag").attr("placeholder", "Maziausiau 3 simboliai");
+                }
+
+                $( "#js-new-tag" ).val("");
+            });
+
+            $('#newDocumentWindow form, #editDocumentWindow form').submit(function() {
+                $('.loader-wrapper').css('visibility', 'visible');
+            });
+
+            $(document).on('click', '.tagBadge .dummyCheckbox', function (e) {
+                if ($('.tagBadge .dummyCheckbox').not(':checked')) {
+                    var input = $(e.currentTarget).prev();
+                    if ( input.attr( "disabled" )) {
+                        input.removeAttr("disabled");
+                    } else {
+                        input.attr( "disabled");
+                    }
+                }
+            });
+
+
+            $(document).on('click', '.clickAndChange', function (e) {
+                var mobileTableImage = $(e.currentTarget).children(".imgClickAndChange");
+                var mobileTableData = $(e.currentTarget).closest('tr').next(".displayMoreData");
+
+                mobileTableData.toggleClass("table-active");
+                if (mobileTableData.hasClass("table-active")) {
+                    mobileTableData.css("display", "table-row");
+                    mobileTableImage.attr("src","images/show-less-button.png");
+                    mobileTableImage.attr("title","Rodyti mažiau");
+                } else {
+                    mobileTableData.css("display", "none");
+                    mobileTableImage.attr("src","images/show-more-button.png");
+                    mobileTableImage.attr("title","Rodyti daugiau");
+                }
+            });
+
+            $("#sideNavigation li").on("click", (e) => {
+                if ($(window).width() < 1115) {
+                    $("#sideNavigation").css("visibility", "hidden");
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
